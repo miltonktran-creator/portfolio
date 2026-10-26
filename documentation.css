@@ -21,6 +21,8 @@ h1 em,h2 em{font-weight:400}
 .section-label{font-size:10px;color:#686e73;display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .section-label span{color:#17191c;font-weight:700}
 .contents-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:50px}
+.contents-groups{display:grid;gap:20px}
+.contents-group .section-label{margin-bottom:8px}
 h2{font-size:clamp(27px,3vw,39px);line-height:1.12;letter-spacing:-.04em;font-weight:550;margin:0 0 12px}
 .contents-grid>div>p,.projects-intro>p{font-size:14px;color:var(--muted);max-width:520px;margin:0}
 .muted{color:var(--muted)}
