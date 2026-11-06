@@ -1,0 +1,323 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Combat robotics projects: antweight robot design, 3D-printed chassis, drivetrain analysis, and spinning weapon design.">
+<title>Combat Robotics Projects | Milton Tran</title>
+<link rel="stylesheet" href="documentation.css">
+<style>
+/* Page-specific additions; colors follow documentation.css */
+.subsection{padding:28px 0;border-top:1px solid var(--line);scroll-margin-top:74px}
+.project-head+.subsection{border-top:0;padding-top:0}
+.equation{font-family:var(--sans);font-size:14px;background:var(--soft);border-left:2px solid #b8bdc1;padding:10px 14px;margin:0 0 16px;color:#24272a}
+.equation sub,.equation sup{font-size:10px}
+.result{font-weight:650;color:#17191c}
+.spec-table{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 18px}
+.spec-table th{font-size:10px;letter-spacing:.07em;font-weight:600;color:#686e73;text-align:left;border-bottom:1px solid var(--line);padding:6px 8px 6px 0}
+.spec-table td{border-bottom:1px solid var(--line);padding:8px 8px 8px 0;color:#363a3e;vertical-align:top}
+.spec-table a{border-bottom:1px solid #c9cdd0}
+.story ul{font-size:15px;line-height:1.8;color:#363a3e;margin:0 0 16px;padding-left:20px}
+.media.contain img{max-height:none}
+.doc-links{display:flex;flex-wrap:wrap;gap:8px 22px}
+/* Wide banner image, same footprint as the full-width placeholders (e.g. Armor) */
+.media.wide img{height:230px;min-height:0;max-height:none;object-fit:cover;object-position:center}
+.sheet-slot{align-items:stretch}
+.sheet-frame{width:100%;height:440px;border:1px solid #d3d7db;background:#fff;margin-bottom:12px}
+.sheet-frame iframe{width:100%;height:100%;border:0;display:block}
+@media(max-width:520px){.sheet-frame{height:360px}}
+/* Table of contents: project heading link + indented sections */
+.toc-project{display:grid;grid-template-columns:auto 1fr 20px;align-items:baseline;gap:14px;padding:4px 0 14px;color:#17191c}
+.toc-project span{font-size:11px;letter-spacing:.07em;font-weight:700;color:#686e73}
+.toc-project strong{font-size:20px;line-height:1.3;letter-spacing:-.02em;font-weight:600}
+.toc-project b{font-weight:400;color:#6b7075;justify-self:end}
+.toc-sub{margin-left:28px}
+@media(max-width:520px){.toc-project strong{font-size:17px}.toc-sub{margin-left:16px}}
+</style>
+</head>
+<body>
+<header class="topbar"><a class="wordmark" href="index.html#home">MILTON TRAN <span>/ COMBAT ROBOTICS</span></a><nav><a href="#contents">Contents</a><a href="documentation.html">Documentation</a><a href="index.html#projects">Projects</a><a href="mailto:miltonktran@gmail.com">Contact ↗</a></nav></header><main id="top">
+<section class="masthead">
+<div class="kicker">HCR &middot; COMBAT ROBOTICS</div>
+<h1>Combat Robotics<br><em>Projects</em></h1>
+<div class="masthead-bottom">
+<p>Design work for 1&nbsp;lb antweight combat robots, from 3D-printed chassis and armor to drivetrain analysis and spinning weapons.</p>
+<div class="issue">ROBOT DESIGN<br>CAD &middot; 3D PRINTING &middot; ELECTRONICS</div>
+</div>
+</section>
+<section class="contents section" id="contents">
+<div class="section-label"><span>01</span> CONTENTS</div>
+<div class="contents-grid">
+<div>
+<h2>Contents</h2>
+<p class="muted">Jump directly to a project or a section, or browse the combat robotics work in order.</p>
+</div>
+<div class="contents-groups">
+<div class="contents-group">
+<a class="toc-project" href="#team-2-robot"><span>PROJECT 01</span><strong>HCR Team 2 Robot</strong><b>&darr;</b></a>
+<ol class="toc-list toc-sub">
+<li><a href="#team-2-robot"><span>1.1</span><strong>Overview &amp; Rules</strong><small>Antweight class, material, weapon, and radio rules</small><b>&darr;</b></a></li>
+<li><a href="#drivebase"><span>1.2</span><strong>Drivebase</strong><small>Printed chassis shell, heat-set inserts, weight savings</small><b>&darr;</b></a></li>
+<li><a href="#drive-motors"><span>1.3</span><strong>Drive Motors</strong><small>Speed, tractive force, power curve, motor mounting</small><b>&darr;</b></a></li>
+<li><a href="#wheels"><span>1.4</span><strong>Wheels</strong><small>PETG core, O-ring traction, internal geometry</small><b>&darr;</b></a></li>
+<li><a href="#armor"><span>1.5</span><strong>Armor</strong><small>Draft angle, infill strategy, crumple zone</small><b>&darr;</b></a></li>
+<li><a href="#weapon"><span>1.6</span><strong>Weapon</strong><small>Brushless drum spinner, tip-speed limit</small><b>&darr;</b></a></li>
+<li><a href="#electronics"><span>1.7</span><strong>Electronics</strong><small>3S LiPo battery, speed controllers</small><b>&darr;</b></a></li>
+<li><a href="#iterations"><span>1.8</span><strong>Iterations &amp; Testing</strong><small>Revisions R1-3 to R1-9, first test print</small><b>&darr;</b></a></li>
+</ol>
+</div>
+<!-- Add future projects here as another .contents-group -->
+</div>
+</div>
+</section>
+<article class="project section" id="team-2-robot">
+<div class="project-head">
+<div class="project-no">PROJECT / 01</div>
+<div class="project-title">
+<h2>HCR <em>Team 2 Robot</em></h2>
+<p>1&nbsp;lb antweight drum spinner &middot; Design Engineer &middot; Oct 2026 &ndash; Present</p>
+</div>
+<div class="project-kind">COMBAT ROBOT / CAD &middot; 3D PRINTING</div>
+</div>
+
+<!-- 1.1 Overview & rules -->
+<div class="subsection">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.1</span> OVERVIEW &amp; RULES</div>
+<p class="lead">A 1&nbsp;lb (454&nbsp;g) antweight combat robot with a 3D-printed chassis, two-wheel differential drive, and a front-mounted spinning drum weapon.</p>
+<p>The design was driven by the competition rules:</p>
+<ul>
+<li><b>Weight:</b> 454&nbsp;g maximum.</li>
+<li><b>Materials:</b> the chassis and weapon can only be PET, PETG, ABS, ASA, PLA, or PLA+. Metal parts such as motors and fasteners can't be used to add strength or armor.</li>
+<li><b>Weapon speed:</b> anything that spins more than 360&deg; is limited to a 20&nbsp;ft/s tip speed.</li>
+<li><b>Braking:</b> the weapon must come to a full stop within 60&nbsp;s of power being removed, using an onboard brake.</li>
+<li><b>Radio:</b> 2.4&nbsp;GHz control, with a failsafe that stops all drive and weapon motion if the signal is lost.</li>
+</ul>
+<div class="doc-links"><a class="pdf-link" href="https://cad.onshape.com/documents/a649c36a7501401aac0a81c3/w/67f4fd06134a5637e2818dd0/e/04a2b72bcb115b7aca01773e" target="_blank" rel="noopener noreferrer">OPEN CAD MODEL ↗</a> <a class="pdf-link" href="https://docs.google.com/spreadsheets/d/1lX2jnQ2fb_O27PXuz-CVbrBZaeuMtrUBbOZGKcCfl3k/edit?gid=17151113#gid=17151113" target="_blank" rel="noopener noreferrer">OPEN MOTOR CALC SHEET ↗</a></div>
+</div>
+<div class="media-column">
+<figure class="media large"><img src="assets/projects/hcr-bot-2/robot-cad.png" alt="CAD render of the HCR Team 2 antweight robot with drum weapon" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 01</span> Robot CAD</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<!-- 1.2 Drivebase -->
+<div class="subsection" id="drivebase">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.2</span> DRIVEBASE</div>
+<p>The drivebase is the robot's main structure. It holds the drive motors, battery, receiver, speed controllers, and other electronics, and provides mounting points for the armor and weapon.</p>
+<p>It is a 3D-printed shell, 126&nbsp;mm long, 90&nbsp;mm wide, and 28&nbsp;mm tall, with 2&nbsp;mm walls that keep it light while staying stiff enough for the internals. A ribbed pocket at the front and pocketed drive motor mounts save weight.</p>
+<p>Twelve M3 heat-set inserts (4&nbsp;mm &times; 5&nbsp;mm) hold everything together: four on top for the roof, and four on each side for the armor.</p>
+</div>
+<div class="media-column">
+<figure class="media"><img src="assets/projects/hcr-bot-2/drivebase-cad.png" alt="Drivebase CAD render" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 02</span> Drivebase CAD</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<!-- 1.3 Drive motors -->
+<div class="subsection" id="drive-motors">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.3</span> DRIVE MOTORS</div>
+<p class="lead">Two Repeat Robotics 16&nbsp;mm Brushed Planetary Motor MK2s each drive one wheel. Running them at different speeds and directions steers the robot (differential drive).</p>
+<h3>Motor mounting</h3>
+<p>The motors are held in custom printed clamps instead of their own mounting holes. The small M2 screw heads could pull through the plastic under impacts or vibration. The clamps spread the load over more of the motor housing and let the motors snap in and out without hardware.</p>
+<p>I printed several test mounts to find the right interference fit and settled on <span class="result">&minus;0.1&nbsp;mm</span>. Too much interference could crack the clamp or damage the motor, and too little would let the motor shift during a match.</p>
+<h3>Speed &amp; tractive force</h3>
+<p>The motors were chosen for enough torque to accelerate and push while keeping a reasonable top speed for the weight class.</p>
+<p>Each motor is rated for 1,220&nbsp;RPM free speed at 12&nbsp;V and 1,187&nbsp;g&middot;cm (0.1164&nbsp;N&middot;m) stall torque. At the battery's 11.1&nbsp;V nominal voltage, free speed drops to about 1,128.5&nbsp;RPM.</p>
+<div class="equation"><i>v</i> = &pi; &middot; <i>D</i><sub>wheel</sub> &middot; <i>n</i> / 60</div>
+<p>With 42&nbsp;mm wheels, the theoretical top speed is <span class="result">2.68&nbsp;m/s at 12&nbsp;V</span> and <span class="result">2.48&nbsp;m/s at 11.1&nbsp;V</span>. These ignore drivetrain losses and wheel slip, so they are upper limits rather than measured speeds.</p>
+<div class="equation"><i>F</i> = <i>&tau;</i><sub>stall, total</sub> / <i>r</i><sub>wheel</sub> = 0.2328&nbsp;N&middot;m / 0.021&nbsp;m</div>
+<p>Together the motors give about 0.2328&nbsp;N&middot;m of stall torque, or a <span class="result">theoretical 11.1&nbsp;N of tractive force</span>. That is the peak force at stall, not a continuous pushing force.</p>
+<h3>Torque &amp; power curve</h3>
+<p>I generated a torque and power curve from 100 points between 0 and 1,220&nbsp;RPM, assuming torque falls linearly from stall to zero at free speed, with power = torque &times; angular velocity. It predicts a peak of <span class="result">about 3.72&nbsp;W per motor</span> at roughly half of free speed, before electrical and mechanical losses. I used the curve to judge the tradeoff between wheel speed and available pushing force.</p>
+</div>
+<div class="media-column">
+<div class="media-pair">
+<figure class="media"><img src="assets/projects/hcr-bot-2/motor-mount-test-1.png" alt="Sliced motor mount tolerance test prints, first set" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 03</span> Mount tolerance tests</figcaption>
+</figure>
+<figure class="media"><img src="assets/projects/hcr-bot-2/motor-mount-test-2.png" alt="Sliced motor mount tolerance test prints, second set" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 04</span> Mount tolerance tests</figcaption>
+</figure>
+</div>
+<table class="spec-table">
+<tr><th>DRIVE SPEC</th><th>VALUE</th></tr>
+<tr><td>Motor</td><td>Repeat Robotics 16&nbsp;mm Brushed Planetary MK2 (&times;2)</td></tr>
+<tr><td>Free speed</td><td>1,220&nbsp;RPM @ 12&nbsp;V &middot; 1,128.5&nbsp;RPM @ 11.1&nbsp;V</td></tr>
+<tr><td>Stall torque</td><td>0.1164&nbsp;N&middot;m per motor</td></tr>
+<tr><td>Top speed (theoretical)</td><td>2.48&nbsp;m/s @ 11.1&nbsp;V</td></tr>
+<tr><td>Stall tractive force</td><td>11.1&nbsp;N combined</td></tr>
+<tr><td>Peak power</td><td>3.72&nbsp;W per motor</td></tr>
+</table>
+<div class="media note-media video-slot sheet-slot"><span>Motor Calc Sheet</span>
+<div class="sheet-frame"><iframe src="https://docs.google.com/spreadsheets/d/1lX2jnQ2fb_O27PXuz-CVbrBZaeuMtrUBbOZGKcCfl3k/preview?gid=17151113&amp;rm=minimal" title="HCR Bot 2 motor calculation spreadsheet" loading="lazy"></iframe></div>
+<div class="doc-links"><a class="pdf-link" href="https://docs.google.com/spreadsheets/d/1lX2jnQ2fb_O27PXuz-CVbrBZaeuMtrUBbOZGKcCfl3k/edit?gid=17151113#gid=17151113" target="_blank" rel="noopener noreferrer">OPEN FULL SHEET ↗</a> <a class="pdf-link" href="https://docs.google.com/spreadsheets/d/1lX2jnQ2fb_O27PXuz-CVbrBZaeuMtrUBbOZGKcCfl3k/copy" target="_blank" rel="noopener noreferrer">MAKE A COPY TO EDIT ↗</a></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 1.4 Wheels -->
+<div class="subsection" id="wheels">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.4</span> WHEELS</div>
+<p>The wheels have a 3D-printed PETG core, 38.5&nbsp;mm across and 20&nbsp;mm wide, with three grooves (up to 1.85&nbsp;mm radius) that hold <a href="https://www.mcmaster.com/9262K287/" target="_blank" rel="noopener noreferrer">O-rings</a> for traction. With the O-rings installed, the wheel is 42&nbsp;mm across, which stretches the rings about 5%, the amount recommended for a permanent fit.</p>
+<p>A 16.7&nbsp;mm hub with a 3.15&nbsp;mm D-bore mounts the wheel on the motor shaft. Inside, the wheel uses its own internal rib geometry for strength and low weight instead of relying on the slicer's infill pattern.</p>
+</div>
+<div class="media-column">
+<div class="media-pair">
+<figure class="media"><img src="assets/projects/hcr-bot-2/wheel-section-view.png"alt="Wheel section view" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 05</span> Wheel section view</figcaption>
+</figure>
+<figure class="media"><img src="assets/projects/hcr-bot-2/wheels-sliced.png" alt="Wheel sliced view" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 05B</span> Wheel sliced view</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 1.5 Armor -->
+<div class="subsection" id="armor">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.5</span> ARMOR</div>
+<p>The armor protects the internals and gives the weapon a rigid mount. It is 9&nbsp;mm thick with a 3&deg; draft on the outside, so the bottom is wider than the top. That makes it harder for an opposing vertical spinner to catch underneath the robot.</p>
+<p>Eight screws fasten the armor to the drivebase through the side heat-set inserts. The weapon is supported by a bearing in the armor on one side and a four-hole motor mount on the other.</p>
+<p>The armor is printed in PETG for toughness and ease of printing. Most of it uses low infill so it can flex and absorb hits, while the weapon mounting holes and front forks are printed at 100% infill. The rear uses a rib infill that acts as a crumple zone to protect the battery. The armor weighs about 55&nbsp;g, under its 60&nbsp;g budget.</p>
+</div>
+<div class="media-column">
+<figure class="media"><img src="assets/projects/hcr-bot-2/armor.png" alt="Armor CAD render" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 06</span> Armor CAD</figcaption>
+</figure>
+<figure class="media"><img src="assets/projects/hcr-bot-2/armor-sliced.png" alt="Armor section view" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 06</span> Armor Section View</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<!-- 1.6 Weapon -->
+<div class="subsection" id="weapon">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.6</span> WEAPON</div>
+<p>The weapon is a custom spinning drum, 52&nbsp;mm across with 4&nbsp;mm walls and a mass of about 80&nbsp;g. Teeth on the outside let it bite into opponents. It is printed in PLA, which is hard enough to deliver a strong hit without deforming.</p>
+<p>The drum keeps the weapon compact within the chassis footprint. One side is press-fit onto the motor and the other rides on a bearing in the armor, which reduces shaft deflection and stiffens the assembly.</p>
+<h3>Weapon motor</h3>
+<p>The drum is driven by a FLASH HOBBY D2822 2600KV brushless outrunner (about 46&nbsp;g). At 11.1&nbsp;V its theoretical unloaded speed is 2600 &times; 11.1 = <span class="result">28,860&nbsp;RPM</span>, far above what the rules allow, so the brushless ESC has to limit speed and brake the weapon to a stop within 60&nbsp;s.</p>
+<h3>Tip-speed limit</h3>
+<div class="equation"><i>v</i><sub>tip</sub> = &pi; &middot; <i>D</i> &middot; <i>n</i> / 60</div>
+<p>For the 52&nbsp;mm drum at 2,200&nbsp;RPM, the tip speed is <span class="result">about 19.6&nbsp;ft/s</span>, just under the 20&nbsp;ft/s limit. The final number should be confirmed with the measured operating RPM.</p>
+</div>
+<div class="media-column">
+<figure class="media wide"><img src="assets/projects/hcr-bot-2/weapon-drum.png" alt="CAD render of the drum weapon mounted between the armor forks" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 07</span> Drum weapon</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<!-- 1.7 Electronics -->
+<div class="subsection" id="electronics">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.7</span> ELECTRONICS</div>
+<h3>Battery</h3>
+<p>A Tattu 3S LiPo (11.1&nbsp;V, 450&nbsp;mAh, 75C) powers the drive motors, weapon, and electronics. It measures 51 &times; 26 &times; 14&nbsp;mm, weighs about 32&nbsp;g, and connects to the robot's switch through an XT30 connector.</p>
+<div class="equation"><i>E</i> = 11.1&nbsp;V &times; 0.45&nbsp;Ah = 4.995&nbsp;Wh</div>
+<div class="equation"><i>I</i><sub>max</sub> = 0.45&nbsp;Ah &times; 75C = 33.75&nbsp;A</div>
+<h3>Speed controllers</h3>
+<p>The drive motors run on a YoungRC 30A brushed ESC with braking. The weapon uses a separate brushless ESC configured for speed limiting and braking.</p>
+</div>
+<div class="story">
+<div class="section-label">SPECS</div>
+<table class="spec-table">
+<tr><th>COMPONENT</th><th>DETAIL</th></tr>
+<tr><td>Battery</td><td>Tattu 3S LiPo, 11.1&nbsp;V, 450&nbsp;mAh, 75C, XT30, ~32&nbsp;g</td></tr>
+<tr><td>Energy</td><td>4.995&nbsp;Wh</td></tr>
+<tr><td>Max discharge</td><td>33.75&nbsp;A</td></tr>
+<tr><td>Drive ESC</td><td>YoungRC 30A brushed, with brake</td></tr>
+<tr><td>Weapon motor</td><td>FLASH HOBBY D2822 2600KV brushless, ~46&nbsp;g</td></tr>
+<tr><td>Power switch</td><td>FingerTech switch</td></tr>
+</table>
+</div>
+</div>
+</div>
+
+<!-- 1.8 Iterations & testing -->
+<div class="subsection" id="iterations">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.8</span> ITERATIONS &amp; TESTING</div>
+<h3>R1-3 &middot; R1-4</h3>
+<ul>
+<li>Added an indent at the motor for extra wiring clearance from the weapon</li>
+<li>Switched armor hardware to readily available button-head screws</li>
+<li>Added material around chassis screws after a simple tear-out check</li>
+</ul>
+<h3>R1-5 &middot; Parametric CAD</h3>
+<ul>
+<li>Added ride-height and O-ring thickness variables, and made armor and wheel OD changes update without breaking the model</li>
+<li>Made robot width depend on track width and wheel width</li>
+<li>Added a sketch to check that the wheels still touch the ground when the robot is flipped</li>
+<li>Shortened the weapon claws from 10&nbsp;mm to 7&nbsp;mm and added the FingerTech switch with an access hole</li>
+</ul>
+<h3>R1-6 &middot; Weapon &amp; hardware rework</h3>
+<ul>
+<li>Moved the weapon bearing into the armor and had the mounting screw thread into the drum for rigidity</li>
+<li>Replaced all M4 hardware with M3 screws in heat-set inserts instead of threading into plastic</li>
+<li>Set armor thickness to 9&nbsp;mm and added the draft against vertical spinners</li>
+<li>Changed to 3.5&nbsp;mm O-rings for availability and tied O-ring spacing to wheel width</li>
+</ul>
+<h3>R1-7 &middot; R1-8</h3>
+<ul>
+<li>Added a shield so weapon motor wires can't get caught in the drum</li>
+<li>Raised chassis height from 25&nbsp;mm to 28&nbsp;mm and added ribs around the drive shaft bores</li>
+<li>Increased wheel OD to 41&nbsp;mm, then 42&nbsp;mm, for about 5% O-ring stretch</li>
+<li>Tuned the motor fit so the drive motors snap into place, and added a front grill that saves 1.5&nbsp;g</li>
+</ul>
+<h3>R1-9</h3>
+<ul>
+<li>Lengthened the chassis slightly to fit the electronics</li>
+<li>Pocketed the motor mounts, tightened the heat-set insert holes, and tightened the motor bore in the weapon</li>
+</ul>
+<h3>First test print</h3>
+<p>The first full print drove well, and the O-ring wheels gripped the floor. It also showed what to fix next:</p>
+<ul>
+<li>Electronics barely fit</li>
+<li>The armor flexes inward slightly and needs a spacer so it doesn't rub</li>
+<li>The weapon bearing sticks out too far and needs an undercut</li>
+<li>The weapon needs a lock</li>
+<li>The drive motors can still slide, so the shafts need spacers</li>
+<li>The battery mount might need to move higher</li>
+</ul>
+</div>
+<div class="media-column">
+<figure class="media"><img src="assets/projects/hcr-bot-2/test-print-exterior.jpg" alt="First test print of the robot, exterior" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 08</span> First test print</figcaption>
+</figure>
+<figure class="media contain"><img src="assets/projects/hcr-bot-2/test-print-interior.jpg" alt="First test print with roof removed showing wiring and electronics" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 09</span> Electronics layout</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<div class="project-footer"><span>TOOLS &amp; METHODS</span><b>Onshape</b><b>Parametric CAD</b><b>3D printing</b><b>PETG / PLA</b><b>Motor analysis</b><b>Prototyping</b></div>
+</article>
+<!-- Template for the next combat robotics project: copy the <article> above, change id, PROJECT / 02, text, and image paths. -->
+</main><footer class="footer"><span>MILTON TRAN / COMBAT ROBOTICS PROJECTS</span><a href="#top">BACK TO TOP &uarr;</a><span>DESIGN &middot; TEST &middot; ITERATE</span></footer>
+<script src="documentation.js"></script>
+</body>
+</html>

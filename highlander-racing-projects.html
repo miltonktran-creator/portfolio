@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Highlander Racing projects: suspension design, CAD, FEA, and fabrication for Formula SAE Electric.">
+<title>Highlander Racing Projects | Milton Tran</title>
+<link rel="stylesheet" href="documentation.css">
+<style>
+/* Page-specific additions; colors follow documentation.css */
+.subsection{padding:28px 0;border-top:1px solid var(--line);scroll-margin-top:74px}
+.project-head+.subsection{border-top:0;padding-top:0}
+.equation{font-family:var(--sans);font-size:14px;background:var(--soft);border-left:2px solid #b8bdc1;padding:10px 14px;margin:0 0 16px;color:#24272a}
+.equation sub,.equation sup{font-size:10px}
+.result{font-weight:650;color:#17191c}
+.spec-table{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 18px}
+.spec-table th{font-size:10px;letter-spacing:.07em;font-weight:600;color:#686e73;text-align:left;border-bottom:1px solid var(--line);padding:6px 8px 6px 0}
+.spec-table td{border-bottom:1px solid var(--line);padding:8px 8px 8px 0;color:#363a3e;vertical-align:top}
+.spec-table a{border-bottom:1px solid #c9cdd0}
+.story ul{font-size:15px;line-height:1.8;color:#363a3e;margin:0 0 16px;padding-left:20px}
+.source-list{list-style:none;padding:0!important;font-size:13px!important}
+.source-list li{border-bottom:1px solid var(--line);padding:6px 0}
+.media.contain img{max-height:none}
+/* Table of contents: project heading link + indented sections */
+.toc-project{display:grid;grid-template-columns:auto 1fr 20px;align-items:baseline;gap:14px;padding:4px 0 14px;color:#17191c}
+.toc-project span{font-size:11px;letter-spacing:.07em;font-weight:700;color:#686e73}
+.toc-project strong{font-size:20px;line-height:1.3;letter-spacing:-.02em;font-weight:600}
+.toc-project b{font-weight:400;color:#6b7075;justify-self:end}
+.toc-sub{margin-left:28px}
+@media(max-width:520px){.toc-project strong{font-size:17px}.toc-sub{margin-left:16px}}
+</style>
+</head>
+<body>
+<header class="topbar"><a class="wordmark" href="index.html#home">MILTON TRAN <span>/ HIGHLANDER RACING</span></a><nav><a href="#contents">Contents</a><a href="documentation.html">Documentation</a><a href="index.html#projects">Projects</a><a href="mailto:miltonktran@gmail.com">Contact ↗</a></nav></header><main id="top">
+<section class="masthead">
+<div class="kicker">HIGHLANDER RACING &middot; FORMULA SAE</div>
+<h1>Highlander Racing<br><em>Projects</em></h1>
+<div class="masthead-bottom">
+<p>Design work for Highlander Racing's competition vehicles, from suspension geometry and CAD to analysis and technical documentation.</p>
+<div class="issue">VEHICLE DESIGN<br>SUSPENSION &middot; CAD &middot; FEA</div>
+</div>
+</section>
+<section class="contents section" id="contents">
+<div class="section-label"><span>01</span> CONTENTS</div>
+<div class="contents-grid">
+<div>
+<h2>Contents</h2>
+<p class="muted">Jump directly to a project or a section, or browse the Highlander Racing work in order.</p>
+</div>
+<div class="contents-groups">
+<div class="contents-group">
+<a class="toc-project" href="#control-arms"><span>PROJECT 01</span><strong>HR24E Front Suspension Control Arms</strong><b>&darr;</b></a>
+<ol class="toc-list toc-sub">
+<li><a href="#control-arms"><span>1.1</span><strong>Overview</strong><small>Scope, role, and tools</small><b>&darr;</b></a></li>
+<li><a href="#bearing-housing"><span>1.2</span><strong>Spherical Bearing &amp; Housing</strong><small>Retaining ring vs. staking vs. swaging</small><b>&darr;</b></a></li>
+<li><a href="#a-arm-assembly"><span>1.3</span><strong>A-Arm Assembly</strong><small>Construction, Euler buckling, FEA comparison</small><b>&darr;</b></a></li>
+<li><a href="#mounts"><span>1.4</span><strong>Mounts</strong><small>Double-shear brackets, tear-out analysis, torque specs</small><b>&darr;</b></a></li>
+<li><a href="#materials-hardware"><span>1.5</span><strong>Materials &amp; Hardware</strong><small>4130 steel, SAE Grade 5 / 8 fasteners, rod ends</small><b>&darr;</b></a></li>
+<li><a href="#improvements"><span>1.6</span><strong>Improvements &amp; Sources</strong><small>File organization, CAD practices, references</small><b>&darr;</b></a></li>
+</ol>
+</div>
+<!-- Add future projects here as another .contents-group -->
+</div>
+</div>
+</section>
+<article class="project section" id="control-arms">
+<div class="project-head">
+<div class="project-no">PROJECT / 01</div>
+<div class="project-title">
+<h2>HR24E <em>Control Arms Intern Project</em></h2>
+<p>Front-left suspension &middot; Suspension Design Engineer &middot; Sep 2026 &ndash; Oct 2026</p>
+</div>
+<div class="project-kind">SUSPENSION / CAD &middot; FEA</div>
+</div>
+
+<!-- 1.1 Overview -->
+<div class="subsection">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.1</span> OVERVIEW</div>
+<p class="lead">I designed and modeled the upper and lower control arms for HR24E's front-left suspension in SolidWorks, working from the provided chassis, suspension sketch, and upright to set the assembly geometry and constraints.</p>
+<p>The project covered the spherical bearing housing, the A-arm tube assemblies, and the chassis mounting brackets. I selected the hardware, checked the arms for buckling and the brackets for tear-out by hand, and compared the hand calculations with SolidWorks FEA. Throughout this project, I accounted for materials, manufacturing processes, and design constraints.</p>
+<a class="pdf-link" href="https://docs.google.com/spreadsheets/d/1MvGobEmDTnGotdYI9D-Ik3hfLBHtw79OiBtGlOmoAWc/edit?usp=sharing" target="_blank" rel="noopener noreferrer">OPEN ANALYSIS SPREADSHEET ↗</a></div>
+<div class="media-column">
+<figure class="media large"><img src="assets/projects/project-05-a.jpg" alt="HR24E upper and lower control arm CAD model" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 01</span> Control arm CAD</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<!-- 1.2 Bearing & housing -->
+<div class="subsection" id="bearing-housing">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.2</span> SPHERICAL BEARING &amp; HOUSING</div>
+<p>The upright connects to the A-arms through a <a href="https://www.mcmaster.com/63195K67" target="_blank" rel="noopener noreferrer">spherical bearing</a> pressed into a 4130 housing. There are several ways to secure the bearing in its housing. Weight, hardware, and accessibility were the main factors in my choice.</p>
+<h3>Retaining ring</h3>
+<p>This method needs a groove cut inside the bore for a retaining ring. The housing would have to be taller, with extra material below to hold the bearing and above for the groove. Getting a tight fit for the ring would also be difficult, so the bearing could wobble in the housing.</p>
+<h3>Staking</h3>
+<p>Staking deforms the housing material into the bearing's chamfer to lock it in place. Because the housing usually isn't hardened, the tooling is cheaper and the process is simpler than swaging. The downside is that the softer housing has to be checked for creep more often.</p>
+<h3>Swaging</h3>
+<p>Swaging deforms the bearing's outer race into the housing's internal chamfer instead. Bearings are usually hardened, so a groove has to be cut into the bearing first so that only the intended material is pushed outward.</p>
+<h3>Final decision</h3>
+<p>I chose staking. It needs no extra hardware, so it is lighter than a retaining ring, and its process and tooling are cheaper than swaging.</p>
+</div>
+<div class="media-column">
+<figure class="media large"><img src="assets/projects/hr-control-arms/bearing-housing.png" alt="CAD of the spherical bearing staked into its 4130 housing" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 03</span> Bearing housing</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<!-- 1.3 A-arm assembly -->
+<div class="subsection" id="a-arm-assembly">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.3</span> A-ARM ASSEMBLY</div>
+<p>Each A-arm leg has four parts: a <a href="https://www.mcmaster.com/89955K819/" target="_blank" rel="noopener noreferrer">4130 tube</a>, a 4130 adapter, a <a href="https://www.mcmaster.com/60645K84-60645K842/" target="_blank" rel="noopener noreferrer">rod end</a>, and a <a href="https://www.mcmaster.com/90499A815/" target="_blank" rel="noopener noreferrer">jam nut</a>. The tube and adapter are turned from 4130 steel, pressed together, and welded. The nut threads onto the rod end, the rod end goes into the adapter and is adjusted to its final position with the nut, and the nut is then welded to the adapter.</p>
+<h3>Euler buckling</h3>
+<p>Euler buckling describes the sideways bending of a slender column under axial load. The tube is 10.75&nbsp;in long, 4130 steel, with a 9/16&nbsp;in outer diameter and a 0.12&nbsp;in wall.</p>
+<p>The effective-length factor <i>K</i> depends on how each end is held. Both ends are fixed here, so <i>K</i> = 0.5. The tube's area moment of inertia and the critical load are:</p>
+<div class="equation"><i>I</i> = &pi;(<i>D</i><sub>o</sub><sup>4</sup> &minus; <i>D</i><sub>i</sub><sup>4</sup>) / 64</div>
+<div class="equation"><i>P</i><sub>cr</sub> = &pi;<sup>2</sup><i>EI</i> / (<i>KL</i>)<sup>2</sup></div>
+<p>Here <i>E</i> is the modulus of elasticity. With a safety factor of 2, the maximum allowable axial force is <span class="result">about 96,582&nbsp;N</span>.</p>
+<h3>FEA comparison</h3>
+<p>I couldn't fix both ends in the SolidWorks buckling study, so the top end acted like a hinge (<i>K</i> = 0.7). With a 900&nbsp;lb axial load, FEA gave a load factor of 24.651, for a critical load of <span class="result">22,185.9&nbsp;lb</span>. My hand calculation for <i>K</i> = 0.7 gave <span class="result">22,240.13&nbsp;lb</span>, a difference of about 0.2%.</p>
+</div>
+<div class="media-column">
+<figure class="media"><img src="assets/projects/hr-control-arms/a-arm-exploded.png" alt="Exploded view of the A-arm tube, adapter, rod end, and nut" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 04</span> A-arm exploded view</figcaption>
+</figure>
+<figure class="media contain"><img src="assets/projects/hr-control-arms/buckling-hand-calc.jpg" alt="Hand calculations for Euler buckling of the A-arm tube" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 05</span> Buckling hand calculations</figcaption>
+</figure>
+<figure class="media contain"><img src="assets/projects/hr-control-arms/buckling-fea.jpg" alt="SolidWorks buckling FEA of the A-arm tube" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 06</span> Buckling FEA</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<!-- 1.4 Mounts -->
+<div class="subsection" id="mounts">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.4</span> MOUNTS</div>
+<p>Each mount is a simple bracket of 0.1&nbsp;in 4130 sheet bent into a U shape, with a 0.375&nbsp;in bore through both sides. The brackets are 1&nbsp;in wide with a 0.5&nbsp;in edge radius, and the bolt hole is concentric with that radius. The bolt passes through both lugs, so radial load is shared between them in a double-shear joint.</p>
+<h3>Tear-out analysis</h3>
+<p>Tear-out happens when a pin or bolt pulls through the end of a metal lug, shearing the material along two parallel planes toward the free edge. The edge distance, shear area, and ultimate tear-out load are:</p>
+<div class="equation"><i>e</i> = <i>R</i> &minus; <i>r</i><sub>h</sub> = 0.3125&nbsp;in</div>
+<div class="equation"><i>A</i><sub>lug</sub> = 2 &middot; <i>e</i> &middot; <i>t</i> = 0.0625&nbsp;in<sup>2</sup> &nbsp;&nbsp;&middot;&nbsp;&nbsp; <i>A</i><sub>tot</sub> = 2 &middot; <i>A</i><sub>lug</sub> = 0.125&nbsp;in<sup>2</sup></div>
+<div class="equation"><i>&tau;</i><sub>u</sub> = 0.6 &middot; <i>&sigma;</i><sub>u</sub> &nbsp;&nbsp;&middot;&nbsp;&nbsp; <i>P</i><sub>tear</sub> = <i>A</i><sub>tot</sub> &middot; <i>&tau;</i><sub>u</sub></div>
+<p>This gives an ultimate tear-out load of 32,360.8&nbsp;N, or <span class="result">16,180.4&nbsp;N with a safety factor of 2</span>.</p>
+<h3>Why a 0.6 shear-to-tensile ratio?</h3>
+<p>This ratio is the fraction of a metal's tensile strength that it can carry in shear. If a steel bar takes 100&nbsp;lb to pull apart and the ratio is 0.6, it takes only 60&nbsp;lb to shear it in half. Handbooks such as MMPDS, MIL-HDBK-5, and Machinery's Handbook give empirical values between 0.58 and 0.62 for 4130 steel, so I used 0.6 to estimate the ultimate shear strength.</p>
+<h3>Torque specs</h3>
+<p>The brackets use six 1&frac12;&nbsp;in &frac38;-24 SAE Grade 8 hex head bolts. Torque values are in the analysis spreadsheet.</p>
+</div>
+<div class="media-column">
+<figure class="media contain"><img src="assets/projects/hr-control-arms/tear-out-calc.jpg" alt="Double shear joint tear-out hand calculations" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 07</span> Tear-out calculations</figcaption>
+</figure>
+<figure class="media contain"><img src="assets/projects/hr-control-arms/torque-specs.jpg" alt="Torque specification calculations for the 3/8-24 Grade 8 bolts" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 08</span> Torque specs</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<!-- 1.5 Materials & hardware -->
+<div class="subsection" id="materials-hardware">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.5</span> MATERIALS</div>
+<p>All plates and tubes are chromoly (AISI 4130).</p>
+<table class="spec-table">
+<tr><th>MATERIAL</th><th>TENSILE STRENGTH</th><th>YIELD STRENGTH</th></tr>
+<tr><td>AISI 4130 steel</td><td>560 MPa</td><td>460 MPa</td></tr>
+</table>
+<table class="spec-table">
+<tr><th>FASTENER GRADE</th><th>TENSILE STRENGTH</th><th>SHEAR STRENGTH</th></tr>
+<tr><td>SAE Grade 8</td><td>150,000 psi</td><td>90,000 psi</td></tr>
+<tr><td>SAE Grade 5</td><td>120,000 psi</td><td>72,000 psi</td></tr>
+</table>
+</div>
+<div class="story">
+<div class="section-label">HARDWARE</div>
+<table class="spec-table">
+<tr><th>PART</th><th>QTY</th></tr>
+<tr><td><a href="https://www.mcmaster.com/91268A754/" target="_blank" rel="noopener noreferrer">1&frac12; in &frac38;-24 SAE Grade 8 hex head bolt</a></td><td>6</td></tr>
+<tr><td><a href="https://www.mcmaster.com/90499A815/" target="_blank" rel="noopener noreferrer">&frac38;-24 SAE Grade 8 nut</a></td><td>4</td></tr>
+<tr><td><a href="https://www.mcmaster.com/92865A540/" target="_blank" rel="noopener noreferrer">&frac34; in &frac14;-20 SAE Grade 5 hex head bolt</a></td><td>2</td></tr>
+<tr><td><a href="https://www.mcmaster.com/95462A029" target="_blank" rel="noopener noreferrer">&frac14;-20 SAE Grade 5 nut</a></td><td>2</td></tr>
+<tr><td><a href="https://www.mcmaster.com/90499A820/" target="_blank" rel="noopener noreferrer">7/16-20 SAE Grade 8 nut</a></td><td>4</td></tr>
+<tr><td><a href="https://www.mcmaster.com/60645K84-60645K842/" target="_blank" rel="noopener noreferrer">Ball joint rod end, &frac38; in ID, oversized 7/16-20 thread</a></td><td>&mdash;</td></tr>
+</table>
+</div>
+</div>
+</div>
+
+<!-- 1.6 Improvements & sources -->
+<div class="subsection" id="improvements">
+<div class="article-grid">
+<div class="story">
+<div class="section-label"><span>1.6</span> IMPROVEMENTS</div>
+<h3>Analysis</h3>
+<p>Although this project accounted for the tear out and buckling analysis, it failed to account for the strength in the welded joints.</p>
+<ul>
+<li>Next time I would check the welds for shear and bending as well as the thermal effects it would have on the material properties of the A-arms.</li>
+</ul>
+<h3>Organization &amp; file naming</h3>
+<p>The project files made it hard to find hardware and other parts. Next time I would set up:</p>
+<ul>
+<li>A part numbering system</li>
+<li>Folders for each subsystem and a dedicated hardware folder</li>
+<li>Clearer assembly names and derivations</li>
+<li>Version history</li>
+</ul>
+<h3>CAD practices</h3>
+<ul>
+<li>Find a better way to mate parts</li>
+<li>Redo my keybinds</li>
+<li>Show welds more clearly in the model</li>
+<li>Learn proper tolerancing and dimensioning</li>
+</ul>
+<div class="section-label" style="margin-top:28px">SOURCES</div>
+<ul class="source-list">
+<li><a href="https://mechanicalc.com/calculators/lifting-lug-analysis/instructions" target="_blank" rel="noopener noreferrer">MechaniCalc &middot; Lifting lug analysis (instructions)</a></li>
+<li><a href="https://mechanicalc.com/calculators/lifting-lug-analysis/" target="_blank" rel="noopener noreferrer">MechaniCalc &middot; Lifting lug calculator</a></li>
+<li><a href="https://www.designjudges.com/articles/rod-ends-and-spherical-bearings" target="_blank" rel="noopener noreferrer">Design Judges &middot; Rod ends and spherical bearings</a></li>
+<li><a href="https://www.nhbb.com/knowledge-center/engineering-reference/rod-end-spherical-bearings/staking-procedures" target="_blank" rel="noopener noreferrer">NHBB &middot; Staking procedures</a></li>
+<li><a href="https://hassanaliengineer.com.au/wp-content/uploads/2020/03/MEE30003-Machine-Design-A-Arms-Report.pdf" target="_blank" rel="noopener noreferrer">Machine Design A-Arms report (PDF)</a></li>
+</ul>
+</div>
+<div class="media-column">
+<figure class="media contain"><img src="assets/projects/hr-control-arms/file-organization.png" alt="Screenshot of the unorganized project file tree" onerror="this.closest('figure').classList.add('empty')">
+<figcaption><span>FIG. 09</span> Project file tree</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<div class="project-footer"><span>TOOLS &amp; METHODS</span><b>SolidWorks</b><b>FEA</b><b>Euler buckling</b><b>Tear-out analysis</b><b>Bearing staking</b><b>4130 steel</b><b>Technical writing</b></div>
+</article>
+<!-- Template for the next Highlander Racing project: copy the <article> above, change id, PROJECT / 02, text, and image paths. -->
+</main><footer class="footer"><span>MILTON TRAN / HIGHLANDER RACING PROJECTS</span><a href="#top">BACK TO TOP &uarr;</a><span>DESIGN &middot; TEST &middot; ITERATE</span></footer>
+<script src="documentation.js"></script>
+</body>
+</html>
